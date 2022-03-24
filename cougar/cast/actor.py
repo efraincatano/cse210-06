@@ -2,21 +2,21 @@
 class Actor:
         def __init__(self, image, position):
 
-            self.image = self.get_image
-            self.position = position
+            self._image = self.get_image
+            self._position = position
 
         def get_image(self, image):
-            return self.image
+            return self._image
 
         def get_position(self):
-            return self.position
+            return self._position
 
         def set_image(self, image):
-            self.image = image
+            self._image = image
 
         def set_position(self):
-            self.position = "some place ramdon"
-            return self.position
+            self._position = "some place ramdon"
+            return self._position
 
 
 
