@@ -11,5 +11,5 @@ class Cougar(Actor):
             return self._image
 
         def set_draw(self):
-            self._image = "i am a cougar"
+            self._image = "i am a tree"
             return self._image

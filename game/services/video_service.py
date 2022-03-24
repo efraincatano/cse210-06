@@ -34,11 +34,11 @@ class VideoService:
         Args:
             actor (Actor): The actor to draw.
         """ 
-        text = actor.get_text()
+        text = actor.get_image()
         x = actor.get_position().get_x()
         y = actor.get_position().get_y()
         font_size = actor.get_font_size()
-        color = actor.get_color().to_tuple()
+        color = actor.get_color()
 
         if centered:
             width = pyray.measure_text(text, font_size)

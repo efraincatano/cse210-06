@@ -7,6 +7,7 @@ class Cougar(Actor):
         def __init__(self, image):
             super().__init__(self)
             self._image = self.get_draw()
+            self._roar = ""
 
         def get_draw(self):
             return self._image
