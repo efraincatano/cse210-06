@@ -19,3 +19,5 @@ class Director:
             # DrawTextureV(cougar, constants.WIDTH/2, constants.HEIGHT/2)
             self._window.clear_buffer()
             self._window.flush_buffer()
+
+        
