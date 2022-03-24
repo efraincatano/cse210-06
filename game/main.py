@@ -1,6 +1,6 @@
 from director import Director
-from cougar.cast import Cast
-from cougar.cast import Cougar
+from cast.cast import Cast
+from cast.cougar import Cougar
 
 def main():
     
