@@ -1,20 +1,19 @@
-from actor import Actor
+from cast.actor import Actor
 import random
-from point import Point
+from cast.point import Point
 
 class Cougar(Actor):
 
         def __init__(self, image):
             super().__init__(self)
-            self._image = self.get_draw()
+            self._image = image
             self._roar = ""
 
-        def get_draw(self):
+        def get_image(self):
             return self._image
 
-        def set_draw(self):
-            self._image = "i am a cougar"
-            return self._image
+        def set_image(self, image):
+            self._image = image
 
         def reset(self):
             self._points = random.randint(1, 8)

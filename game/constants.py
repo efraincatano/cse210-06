@@ -13,4 +13,4 @@ FRAME_RATE = 24
 
 #Game specifications
 CELL_SIZE = 45
-WHITE = RGB(255,255,255)
+WHITE = (255,255,255)

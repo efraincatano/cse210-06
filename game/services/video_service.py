@@ -1,5 +1,8 @@
+from pickle import NONE
 import pyray
+from raylib import LoadImage, LoadTexture
 import constants
+from cast.point import Point
 
 
 class VideoService:
@@ -34,18 +37,19 @@ class VideoService:
         Args:
             actor (Actor): The actor to draw.
         """ 
-        text = actor.get_image()
-        x = actor.get_position().get_x()
-        y = actor.get_position().get_y()
+        texture = pyray.load_texture("game/images/cougar.png")
+        vector = pyray.Vector2(300, 300)
+        x = int(constants.WIDTH/2)
+        y = int(constants.HEIGHT/2)
         font_size = actor.get_font_size()
-        color = actor.get_color()
+        color = constants.WHITE
 
         if centered:
-            width = pyray.measure_text(text, font_size)
+            width = pyray.measure_text(font_size)
             offset = int(width / 2)
             x -= offset
             
-        pyray.draw_text(text, x, y, font_size, color)
+        pyray.draw_texture_ex(texture, vector, 0, 1, (255,255,255))
         
     def draw_actors(self, actors, centered=False):
         """Draws the text for the given list of actors on the screen.
