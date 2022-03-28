@@ -49,7 +49,7 @@ class VideoService:
             offset = int(width / 2)
             x -= offset
             
-        pyray.draw_texture_ex(texture, vector, 0, 1, (255,255,255))
+        pyray.draw_texture_ex(texture, vector, 0, 0.2, (255,255,255))
         
     def draw_actors(self, actors, centered=False):
         """Draws the text for the given list of actors on the screen.
