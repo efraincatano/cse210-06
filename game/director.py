@@ -4,6 +4,7 @@ import constants
 from services.video_service import VideoService
 from services.sound_service import SoundService
 from cast.cougar import Cougar
+from cast.duck import Duck
 import constants
 from cast.point import Point
 
@@ -12,8 +13,8 @@ class Director:
     def __init__(self):
 
         self._window = VideoService()
-        self._sound = SoundService()
-        self._cougar = Cougar("game/images/cougar.png")
+        self._cougar = Cougar("Hi")
+        self._duck = Duck("")
 
     def start_game(self):
 
@@ -25,7 +26,7 @@ class Director:
             # DrawTextureV(cougar, constants.WIDTH/2, constants.HEIGHT/2)self._window.draw_actor(self._cougar)
             # self._window._draw_grid()
             self._window.draw_actor(self._cougar)
-            self._sound.roar()
+            self._window.draw_actor(self._duck)
             self._window.clear_buffer()
             self._window.flush_buffer()
 
