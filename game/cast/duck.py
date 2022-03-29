@@ -1,4 +1,6 @@
-from actor import Actor
+from cast.actor import Actor
+import random
+from cast.point import Point
 
 class Duck(Actor):
 
@@ -6,9 +8,15 @@ class Duck(Actor):
             super().__init__(self)
             self._image = image
 
-        def get_draw(self):
+        def get_image(self):
             return self._image
 
-        def set_draw(self):
-            self._image = "i am a duck"
-            return self._image
+        def set_image(self, image):
+            self._image = image
+
+        def reset(self):
+            self._points = random.randint(1, 8)
+            x = random.randint(1, 40 - 1)
+            y = random.randint(1, 20 - 1)
+            position = Point(x, y)
+            self.set_position(position)

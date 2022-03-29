@@ -3,6 +3,7 @@ from raylib import DrawTexture, DrawTextureV, LoadTexture
 import constants
 from services.video_service import VideoService
 from cast.cougar import Cougar
+from cast.duck import Duck
 import constants
 from cast.point import Point
 
@@ -12,6 +13,7 @@ class Director:
 
         self._window = VideoService()
         self._cougar = Cougar("Hi")
+        self._duck = Duck("")
 
     def start_game(self):
 
@@ -23,6 +25,7 @@ class Director:
             self._window._draw_grid()
             # DrawTextureV(cougar, constants.WIDTH/2, constants.HEIGHT/2)
             self._window.draw_actor(self._cougar)
+            self._window.draw_actor(self._duck)
             self._window.clear_buffer()
             self._window.flush_buffer()
 
