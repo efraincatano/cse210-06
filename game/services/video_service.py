@@ -37,7 +37,7 @@ class VideoService:
         Args:
             actor (Actor): The actor to draw.
         """ 
-        texture = pyray.load_texture("game/images/cougar.png")
+        texture = pyray.load_texture(actor.get_image())
         vector = pyray.Vector2(300, 300)
         x = int(constants.WIDTH/2)
         y = int(constants.HEIGHT/2)
