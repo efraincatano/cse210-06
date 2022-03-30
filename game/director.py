@@ -6,6 +6,8 @@ from cast.cougar import Cougar
 from cast.duck import Duck
 import constants
 from cast.point import Point
+import threading
+
 
 class Director:
 
@@ -28,5 +30,7 @@ class Director:
             self._window.draw_actor(self._duck)
             self._window.clear_buffer()
             self._window.flush_buffer()
+            threading.Timer(3.0, self._cougar.reset).start()
+            threading.Timer(1.0, self._duck.reset).start()
 
         
