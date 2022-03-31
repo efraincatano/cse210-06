@@ -7,6 +7,8 @@ from cast.cougar import Cougar
 from cast.duck import Duck
 import constants
 from cast.point import Point
+import threading
+
 
 class Director:
 
@@ -28,25 +30,13 @@ class Director:
         cougar = pyray.load_texture(self._cougar.get_image())
             
         while self._window.is_window_open():
-
-            if IsMouseButtonDown(0):
-                mouse_x = pyray.get_mouse_x()
-                mouse_y = pyray.get_mouse_y()
-
-                if mouse_x or mouse_y == cougar.get_position():
-                    print("Gotcha!")
-                    print(f"Mouse x = {mouse_x}")
-                    print(f"Mouse y = {mouse_y}")
-                    print(f"Cougar positon = {cougar.get_position()}")
-               
-            pyray.begin_drawing()
-
-            pyray.clear_background((0,0,0))
-            pyray.draw_texture_ex(cougar, (300, 300), 0, 1, (255,255,255))
-
-            pyray.end_drawing()
-
-        pyray.unload_texture(cougar)
-            
+            self._window._draw_grid()
+            # DrawTextureV(cougar, constants.WIDTH/2, constants.HEIGHT/2)
+            self._window.draw_actor(self._cougar)
+            self._window.draw_actor(self._duck)
+            self._window.clear_buffer()
+            self._window.flush_buffer()
+            threading.Timer(3.0, self._cougar.reset).start()
+            threading.Timer(1.0, self._duck.reset).start()
 
         
