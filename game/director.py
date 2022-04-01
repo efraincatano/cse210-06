@@ -46,8 +46,9 @@ class Director:
 
             pyray.end_drawing()
 
-            # threading.Timer(3.0, self._cougar.reset()).start()
-            # threading.Timer(1.0, self._duck.reset()).start()
+            
+            threading.Timer(3.0, self._cougar.reset()).start()
+            threading.Timer(1.0, self._duck.reset()).start()
 
         pyray.unload_texture(cougar)
             
