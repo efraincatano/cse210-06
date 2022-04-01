@@ -16,7 +16,6 @@ class Cougar(Actor):
             self._image = image
 
         def reset(self):
-            self._points = random.randint(1, 8)
             x = random.randint(1, 40 - 1)
             y = random.randint(1, 20 - 1)
             position = Point(x, y)
