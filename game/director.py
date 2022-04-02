@@ -59,14 +59,15 @@ class Director:
                     print("Gotcha!")
                
             pyray.begin_drawing()
+            WHITE = (255, 255, 255)
+            pyray.draw_text("Score", 10, 10, 50, WHITE)
 
             pyray.clear_background((0,0,0))
             pyray.draw_texture_ex(cougar, (300, 300), 0, 1, (255,255,255))
-
+            
+            threading.Timer(3.0, self._cougar.reset()).start()
+            threading.Timer(1.0, self._duck.reset()).start()
             pyray.end_drawing()
-
-            # threading.Timer(3.0, self._cougar.reset()).start()
-            # threading.Timer(1.0, self._duck.reset()).start()
 
         pyray.unload_texture(cougar)
             

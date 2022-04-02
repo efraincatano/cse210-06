@@ -7,6 +7,7 @@ def main():
     
     # create the cast
     cast = Cast()
+    
     cast.add_actor("cougar", Cougar("game/images/cougar.png"))
     cast.add_actor("duck", Duck("game/images/duck.png"))
 
