@@ -1,5 +1,5 @@
 import pyray
-from raylib import DrawTexture, DrawTextureV, GetMousePosition, IsKeyPressed, IsMouseButtonDown, LoadTexture
+import raylib
 import constants
 from services.video_service import VideoService
 from services.sound_service import SoundService
@@ -27,17 +27,36 @@ class Director:
             # DrawTextureV(cougar, constants.WIDTH/2, constants.HEIGHT/2)self._window.draw_actor(self._cougar)
             # self._window._draw_grid()
         cougar = pyray.load_texture(self._cougar.get_image())
+        cougar_width = cougar.width
+        cougar_height = cougar.height
             
         while self._window.is_window_open():
 
-            if IsMouseButtonDown(0):
+            if raylib.IsMouseButtonDown(0):
                 mouse_x = pyray.get_mouse_x()
                 mouse_y = pyray.get_mouse_y()
 
-                if mouse_x or mouse_y == cougar.get_position():
+                for axis_number in range(316, 643):
+                    cougar_x = axis_number
+                    # if mouse_x == axis_number:
+                    #     print("Gotcha!")
+                    #     print(f"Mouse x = {mouse_x}")
+                    #     print(f"Mouse y = {mouse_y}")
+                    #     print(f"Cougar x = {axis_number}")
+                    #     print(f"Width: {cougar.width} / Height: {cougar.height}")
+
+                for axis_number in range(306, 693):
+                    cougar_y = axis_number
+                    # if mouse_y == axis_number:
+                    #     print("Gotcha!")
+                    #     print(f"Mouse x = {mouse_x}")
+                    #     print(f"Mouse y = {mouse_y}")
+                    #     print(f"Cougar y = {axis_number}")
+                    #     print(f"Width: {cougar.width} / Height: {cougar.height}")
+
+
+                if mouse_x == cougar_x and mouse_y == cougar_y:
                     print("Gotcha!")
-                    print(f"Mouse x = {mouse_x}")
-                    print(f"Mouse y = {mouse_y}")
                
             pyray.begin_drawing()
 
