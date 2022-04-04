@@ -22,11 +22,7 @@ class Director:
 
     def start_game(self):
 
-        #TODO: Find out how to load image cougar = LoadTexture("images/cougar.png")
-
         self._window.open_window()  
-            # DrawTextureV(cougar, constants.WIDTH/2, constants.HEIGHT/2)self._window.draw_actor(self._cougar)
-            # self._window._draw_grid()
         cougar = pyray.load_texture(self._cougar.get_image())
         duck = pyray.load_texture(self._duck.get_image())
         cougar_width = cougar.width
@@ -35,9 +31,6 @@ class Director:
         while self._window.is_window_open():
 
             gotcha = False
-
-            t = 1
-            time.sleep(t)
 
             while not gotcha:
 
@@ -59,7 +52,6 @@ class Director:
                 if raylib.IsMouseButtonDown(0):
                     mouse_x = pyray.get_mouse_x()
                     mouse_y = pyray.get_mouse_y()
-                    mouse_position = raylib.GetMousePosition()
                     print(f"Cougar x = {self._cougar.get_position().get_x()}")
 
                     if mouse_x in range(self._cougar.get_position().get_x() - 200, self._cougar.get_position().get_x() + 200) and mouse_y in range(self._cougar.get_position().get_y() - 200, self._cougar.get_position().get_y() + 200):
