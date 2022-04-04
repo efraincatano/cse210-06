@@ -24,12 +24,9 @@ class Actor:
         def get_font_size(self):
             return self._font_size
 
-        def reset(self):
+        def reset(self, position):
             self._points = random.randint(1, 8)
-            x = random.randint(1, 40 - 1)
-            y = random.randint(1, 20 - 1)
-            position = Point(x, y)
-            #self.set_position(position)
+            self.set_position(position)
 
              
 

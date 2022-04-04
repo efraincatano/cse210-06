@@ -1,3 +1,5 @@
+from concurrent.futures import thread
+import random
 import pyray
 import raylib
 import constants
@@ -7,7 +9,7 @@ from cast.cougar import Cougar
 from cast.duck import Duck
 import constants
 from cast.point import Point
-import threading
+import time
 
 class Director:
 
@@ -21,53 +23,50 @@ class Director:
     def start_game(self):
 
         #TODO: Find out how to load image cougar = LoadTexture("images/cougar.png")
-        self._cougar.set_position = Point(constants.WIDTH/2, constants.HEIGHT/2)
 
         self._window.open_window()  
             # DrawTextureV(cougar, constants.WIDTH/2, constants.HEIGHT/2)self._window.draw_actor(self._cougar)
             # self._window._draw_grid()
         cougar = pyray.load_texture(self._cougar.get_image())
+        duck = pyray.load_texture(self._duck.get_image())
         cougar_width = cougar.width
         cougar_height = cougar.height
             
         while self._window.is_window_open():
 
-            if raylib.IsMouseButtonDown(0):
-                mouse_x = pyray.get_mouse_x()
-                mouse_y = pyray.get_mouse_y()
+            gotcha = False
 
-                for axis_number in range(316, 643):
-                    cougar_x = axis_number
-                    # if mouse_x == axis_number:
-                    #     print("Gotcha!")
-                    #     print(f"Mouse x = {mouse_x}")
-                    #     print(f"Mouse y = {mouse_y}")
-                    #     print(f"Cougar x = {axis_number}")
-                    #     print(f"Width: {cougar.width} / Height: {cougar.height}")
+            t = 1
+            time.sleep(t)
 
-                for axis_number in range(306, 693):
-                    cougar_y = axis_number
-                    # if mouse_y == axis_number:
-                    #     print("Gotcha!")
-                    #     print(f"Mouse x = {mouse_x}")
-                    #     print(f"Mouse y = {mouse_y}")
-                    #     print(f"Cougar y = {axis_number}")
-                    #     print(f"Width: {cougar.width} / Height: {cougar.height}")
+            while not gotcha:
 
+                random_positon = (random.randint(600, 1000), random.randint(300, 600))
 
-                if mouse_x == cougar_x and mouse_y == cougar_y:
-                    print("Gotcha!")
-               
-            pyray.begin_drawing()
-            WHITE = (255, 255, 255)
-            pyray.draw_text("Score", 10, 10, 50, WHITE)
+                pyray.begin_drawing()
 
-            pyray.clear_background((0,0,0))
-            pyray.draw_texture_ex(cougar, (300, 300), 0, 1, (255,255,255))
-            
-            threading.Timer(3.0, self._cougar.reset()).start()
-            threading.Timer(1.0, self._duck.reset()).start()
-            pyray.end_drawing()
+                pyray.clear_background((0,0,0))
+                pyray.draw_texture_ex(cougar, random_positon, 0, 0.2, (255,255,255))
+                WHITE = (123, 255, 255)
+                pyray.draw_text("Score", 100, 100, 50, WHITE)
+                
+                random_positon = Point(random.randint(600, 1000), random.randint(300, 600))
+
+                self._cougar.reset(random_positon)
+    
+                pyray.end_drawing()
+
+                if raylib.IsMouseButtonDown(0):
+                    mouse_x = pyray.get_mouse_x()
+                    mouse_y = pyray.get_mouse_y()
+                    mouse_position = raylib.GetMousePosition()
+                    print(f"Cougar x = {self._cougar.get_position().get_x()}")
+
+                    if mouse_x in range(self._cougar.get_position().get_x() - 200, self._cougar.get_position().get_x() + 200) and mouse_y in range(self._cougar.get_position().get_y() - 200, self._cougar.get_position().get_y() + 200):
+                        print("Gotcha!")
+                        print(f"Cougar x = {self._cougar.get_position().get_x()}")
+                        print(f"Cougar y = {self._cougar.get_position().get_y()}")
+                        gotcha = True
 
         pyray.unload_texture(cougar)
             
