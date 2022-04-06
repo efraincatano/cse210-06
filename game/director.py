@@ -19,6 +19,7 @@ class Director:
         self._sound = SoundService()
         self._cougar = Cougar("game/images/cougar.png")
         self._duck = Duck("game/images/duck.png")
+        self._score = 0
 
     def start_game(self):
 
@@ -33,6 +34,7 @@ class Director:
         while self._window.is_window_open():
 
             gotcha = False
+            
 
             while not gotcha:
                 
@@ -49,7 +51,6 @@ class Director:
                 random_position = Point(random.randint(600, 1000), random.randint(300, 600))
     
                 pyray.end_drawing()
-
                 if raylib.IsMouseButtonDown(0):
                     mouse_x = pyray.get_mouse_x()
                     mouse_y = pyray.get_mouse_y()
@@ -59,6 +60,10 @@ class Director:
                         print(f"Cougar x = {self._cougar.get_position().get_x()}")
                         print(f"Cougar y = {self._cougar.get_position().get_y()}")
                         gotcha = True
+                        self._score += 1
+
+                pyray.draw_text(f"Score: {str(self._score)}", 100, 100, 50, WHITE) 
+
 
                 time_reset = []
                 for i in range(1000000):
