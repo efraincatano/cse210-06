@@ -28,15 +28,16 @@ class Director:
         duck = pyray.load_texture(self._duck.get_image())
         cougar_width = cougar.width
         cougar_height = cougar.height
-        print(f"Width: {cougar_width}")
-        print(f"Height: {cougar_height}")
             
         while self._window.is_window_open():
 
-            gotcha = False
-            
+            gotcha = False   
 
             while not gotcha:
+
+                time_reset = []
+                for i in range(1000000):
+                    time_reset.append(i)
                 
                 random_position = (random.randint(600, 1000), random.randint(300, 600))
                 print(f"{random_position}")
@@ -49,8 +50,11 @@ class Director:
                 pyray.draw_text("Score", 100, 100, 50, WHITE)
                 
                 random_position = Point(random.randint(600, 1000), random.randint(300, 600))
+                self._cougar.reset(random_position)
+                self._cougar.set_position(random_position)
     
                 pyray.end_drawing()
+                
                 if raylib.IsMouseButtonDown(0):
                     mouse_x = pyray.get_mouse_x()
                     mouse_y = pyray.get_mouse_y()
@@ -63,13 +67,6 @@ class Director:
                         self._score += 1
 
                 pyray.draw_text(f"Score: {str(self._score)}", 100, 100, 50, WHITE) 
-
-
-                time_reset = []
-                for i in range(1000000):
-                    time_reset.append(i)
-
-                self._cougar.reset(random_position)
 
         pyray.unload_texture(cougar)
             
